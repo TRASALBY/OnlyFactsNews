@@ -1,0 +1,26 @@
+CREATE TABLE `Customers` (
+  `customers_id` int NOT NULL AUTO_INCREMENT,
+  `customers_name` varchar(20) NOT NULL,
+  `customers_phone` int,
+  `customers_address` varchar(50),
+  PRIMARY KEY (`customers_id`)
+);
+
+CREATE TABLE `Items` (
+  `items_id` int NOT NULL AUTO_INCREMENT,
+  `items_name` varchar(50) NOT NULL,
+  `items_quantity` int NOT NULL,
+  PRIMARY KEY (`items_id`)
+);
+
+CREATE TABLE `Orders` (
+  `order_id` int NOT NULL AUTO_INCREMENT,
+  `customers_id` int NOT NULL,
+  `items_id` int NOT NULL,
+  `order_date` date NOT NULL,
+  `order_quantity` int NOT NULL,
+  PRIMARY KEY (`order_id`),
+  FOREIGN KEY (`customers_id`) REFERENCES Customers (`customers_id`),
+  FOREIGN KEY (`items_id`) REFERENCES Items (`items_id`)
+);
+

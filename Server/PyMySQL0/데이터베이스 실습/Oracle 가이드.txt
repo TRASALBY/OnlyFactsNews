@@ -1,0 +1,52 @@
+Oracle 접속방법
+
+파워쉘에서 "sqlplus" 입력후 
+user-name : sys AS SYSDBA
+password : database (설정)
+으로 접속
+
+유저 생성
+Create User [유저 이름] Identified By [패스워드] ;
+
+권한 부여
+Grant DBA To [유저 이름] ;
+
+테이블 생성
+Create Table [테이블 명] ( [이름] [타입] [NOT NULL],.....);
+제약조건문: Constraint PK_[테이블 명] Primary key ( [속성 이름] )
+Constraint FK_[테이블 명] Foreign key( [속성 이름] ) references [참조 테이블 명]([ 참조 속성 명] )
+- 타입 
+  숫자: NUMBER 
+  문자열: VARCHAR2(길이)
+  날짜: DATE
+
+테이블 수정
+Alter table [테이블 명] add [이름] [타입]; 으로  필드 추가
+Alter table [테이블 명] drop column [이름]; 으로 필드 삭제
+
+레코드 추가
+Insert Into [테이블 명] ( [넣고자 하는 속성 이름,...] ) Values ( [넣고자 하는 데이터들,...] );
+
+레코드 수정
+Update [테이블 명] Set [속성 이름= 내용] Where [조건식];
+
+테이블 확인
+Select [필드 명, *로 전부] From [테이블 명, tab으로 테이블 확인];
+Where [조건식]을 뒤에 붙혀 알맞는 행만 추릴 수도 있음
+Select distinct [필드 명] 으로 중복 제거
+Order by [열 이름] [asc/desc(내림)]로 정렬 가능 (기본 오름차순, 나열 순서)
+desc [테이블 명] 으로 정의된 필드 확인
+From절에 [테이블 명] [재명명]으로 객체 처럼 사용가능, 실제로 바뀌는것은 아님
+select [필드 명] [재명명]으로 출력시 재명명된 이름으로 출력. 실제로 바뀌는 것은 아님
+
+테이블 삭제
+Delete From [테이블 명] / Where [조건식] 으로 열만 지울수도 있음
+Drop Table [테이블 명]으로 공간조차 남기지 않고 삭제 가능
+
+시퀀스 생성
+Create Sequence SEQ_[시퀀스 명/ 대체로 테이블 명 사용];
+SEQ_[시퀀스 명].NextVal 으로 오토 인크리먼트 가능, 값 입력시마다 입력 필요
+
+레프트조인 연산
+Select [속성 명] from [붙는 테이블 명]
+Left Join [붙일 테이블 명] On [붙는쪽 테이블].[속성 명] = [붙히는 쪽 테이블].[속성명] ;

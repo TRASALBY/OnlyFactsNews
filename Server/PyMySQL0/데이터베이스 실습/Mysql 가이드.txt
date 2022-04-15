@@ -1,0 +1,54 @@
+MySql 접속 방법
+Bitnami설치 폴더 -> mysql -> bin에서 shift+우클릭으로 파워쉘 실행 후
+.\mysql -uroot -p 입력후
+password : database
+로 접속
+
+sub: strike
+pw : strikepw
+
+계정 생성
+Create User '[ 유저 이름 ]'@localhost Identified By '[ 패스워드 ]' ;
+
+권한 부여
+Grant ALL Privileges On *.* To '[유저 이름]'@'localhost';
+
+DB 만들기
+Create Database [DB이름 ( 유저이름? ) ];
+
+DB 보기
+Show Databases;
+
+DB 선택
+Use [DB 명];
+
+현재 선택중인 DB 확인
+Select Database();
+
+테이블 확인
+Show Tables;
+
+!!!!! 테이블 생성 - '가 아니라 물결표시의 `다.
+Create Table `[테이블 명]` ( `[이름]` `[타입]` `[조건식]`, .... primary key(`[이름]`)) Engine= InnoDB DEFAULT CHARSET = UTF8;
+-타입
+숫자: INT
+문자열: VARCHAR(길이)
+-조건식
+Not NULL 입력시 NULL 입력 불가
+Auto_Increment 입력시 자동적으로 숫자 증가하며 입력됨, 데이터 추가 시 기입하지 않음
+Primary key 입력시 키값으로 지정
+
+데이터 추가
+Insert Into `[테이블 명]` ( `[열 이름]`,... ) Values ( [데이터], ... ), ( [데이터], ... )... ;
+
+데이터 수정
+Update [테이블 명] Set [열 이름= 내용] Where [행 조건식];
+
+데이터 확인
+Select [열 이름, *로 전부] From [테이블 명];
+Where [조건식]을 뒤에 붙혀 알맞는 행만 추릴 수도 있음
+Order by [열 이름] [asc/desc]로 정렬 가능
+
+테이블 삭제
+Delete From [테이블 명] / Where [조건식] 으로 열만 지울수도 있음
+Drop Table [테이블 명]으로 공간조차 남기지 않고 삭제 가능

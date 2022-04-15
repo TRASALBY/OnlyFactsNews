@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PyMySQL0", "PyMySQL0\PyMySQL0.pyproj", "{A580B648-A2BB-4BF6-BBC3-2D8F65C381DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A580B648-A2BB-4BF6-BBC3-2D8F65C381DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A580B648-A2BB-4BF6-BBC3-2D8F65C381DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE8D9B83-C93F-4E72-891E-53DA483DBBC6}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,9 @@
+manifests - <application /> 안의 속성에
+android:usesCleartextTraffic = "true"
+추가할 것
+
+manifests - <manifest /> 안에
+<uses-permission android:name="android.permission.INTERNET"/>
+추가할 것
+
+
