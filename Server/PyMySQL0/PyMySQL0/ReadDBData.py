@@ -1,4 +1,6 @@
-def getDBdata():
+import csv
+
+def getLogindata():
     fname = "DBlogin.txt"
 
     f = open(fname, 'r')
@@ -21,3 +23,14 @@ def getInputdata():
         keys = lines.split('\n')
 
     return keys
+
+def getCSVdata():
+    fname = "DBtestData.csv"
+    csvre = []
+    
+    with open(fname, 'r') as f:
+        rdr = csv.reader(f)
+        for line in rdr:
+            csvre.append(line)
+
+    return csvre
