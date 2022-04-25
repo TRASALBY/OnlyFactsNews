@@ -25,7 +25,7 @@ def getInputdata():
     return keys
 
 def getCSVdata():
-    fname = "DBtestData.csv"
+    fname = "test_naver_news.csv"
     csvre = []
     
     with open(fname, 'r') as f:

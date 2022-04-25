@@ -1,0 +1,11 @@
+ Create table `onlyfacts`(
+    -> `ID` Int Not null Auto_increment,
+    -> `title` Varchar(150),
+    -> `body` text,
+    -> `imglink` Varchar(300),
+    -> `time` Datetime,
+    -> `field` int,
+    -> `sourcelink` Varchar(200),
+    -> `reliability` Int,
+    -> Primary key(`ID`)
+    -> )Engine= InnoDB DEFAULT CHARSET = UTF8;
