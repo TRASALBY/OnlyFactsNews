@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".headnews.Headnews1">
+
+    <LinearLayout
+        android:id="@+id/box_mainNews1"
+        android:layout_width="300dp"
+        android:layout_height="220dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="12dp"
+        android:orientation="vertical"
+        android:background="@drawable/style_stroke"
+        android:elevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_mainNews_press1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_gravity="center_vertical"
+                android:text="언론사 더미 데이터 1"
+                android:textSize="12sp"
+                android:textColor="#B3000000"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/txt_mainNews_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:layout_gravity="center_vertical"
+                android:text="지난 시간 더미 데이터 1"
+                android:textSize="10sp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_mainNews1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/img_dummy"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/txt_mainNews_title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="12dp"
+                android:text="메인페이지 대표뉴스의 제목 더미 데이터 1"
+                android:fontFamily="@font/scoredream5"
+                android:textColor="#CC000000"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
