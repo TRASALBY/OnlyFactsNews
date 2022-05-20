@@ -7,13 +7,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.onlyfacts.dbconnthread.TestActivity;
 import com.example.onlyfacts.news_category.FragCulture;
 import com.example.onlyfacts.news_category.FragEconomic;
 import com.example.onlyfacts.news_category.FragHome;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] titles = new String[]{"홈","사회","정치","경제","국제", "문화", "IT"};
     private DrawerLayout.DrawerListener listener;
+    Button btn_test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
         //좌측 메뉴 슬라이드
         setTabs();
         setDrawer();
+
+        btn_test = findViewById(R.id.btn_test);
+        btn_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 

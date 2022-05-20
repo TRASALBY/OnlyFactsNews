@@ -111,7 +111,7 @@ public class FragHome extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(dataAdapter);
 
-        prepareData();
+        list.add(new Data("80",R.drawable.img_dummycookie, "까까뉴스", "1시간 전", "전국 쿠키 체육대회 앵두맛 쿠키 참전 소식! 우승 노리는가?"));
 
         return view;
     }
