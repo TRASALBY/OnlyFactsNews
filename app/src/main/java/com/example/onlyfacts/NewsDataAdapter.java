@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,7 @@ import com.example.onlyfacts.Roomtest.RoomClass;
 import com.example.onlyfacts.dbconnthread.DBJsonToString;
 import com.example.onlyfacts.dbconnthread.RoomInsertConn;
 import com.example.onlyfacts.dbconnthread.RoomInsertDeleteConn;
+import com.example.onlyfacts.dbconnthread.RoomSelectConn;
 
 import org.json.JSONException;
 
@@ -33,6 +37,7 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
     private List<NewsDataSet> list = new ArrayList<>();
     private Context context;
     RoomClass roomDatabase;
+    List<NewsDataSet> bookmarklist;     //
 
     public NewsDataAdapter(List<NewsDataSet> data) {
         this.list = data;
@@ -47,6 +52,16 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         View view = inflater.inflate(R.layout.item_news, parent, false);
         NewsViewHolder newsViewHolder = new NewsViewHolder(view);
         roomDatabase = RoomClass.getInstance(context);
+
+        Thread thread = new RoomSelectConn(new SelectHandler(), roomDatabase);
+        thread.start();
+
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return newsViewHolder;
     }
 
@@ -63,6 +78,36 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         holder.title.setText(item.getTitle());
         holder.time.setText(item.getTime());
         holder.reliability.setText(item.getReliability());
+
+        /////////////////////////////////////////
+        Boolean bookmarked = false;
+        if (bookmarklist != null) {
+            String itemID = item.getId();
+            for (int i = 0; i < bookmarklist.size(); i++) {
+                NewsDataSet forSet = bookmarklist.get(i);
+                if (forSet.getId().equals(itemID)) {
+                    bookmarked = true;
+                    break;
+                }
+            }
+        }
+/////////////////////////////////////////////////
+//        if(bookmarked){
+//            //불 들어옴
+//            holder.bookmark.setButtonDrawable(R.drawable.ic_selected_bookmarks);
+//        }else{
+//            //불 안 들어옴
+//            holder.bookmark.setButtonDrawable(R.drawable.ic_bookmarks);
+//        }
+
+        holder.bookmark.setOnCheckedChangeListener(null);
+        holder.bookmark.setChecked(bookmarked);
+        holder.bookmark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +136,16 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         }
     }
 
+    class SelectHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.d("Adapter_Loger", "select message handled");
+
+            Bundle bundle = msg.getData();
+            bookmarklist = bundle.getParcelableArrayList("data");
+        }
+    }
 
     @Override
     public int getItemCount() {
@@ -105,7 +160,7 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         TextView field;
         TextView sourcelink;
         TextView reliability;
-        Button bookmark;
+        CheckBox bookmark;
 
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);

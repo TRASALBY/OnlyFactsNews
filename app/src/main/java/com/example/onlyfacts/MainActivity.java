@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPagerAdapter viewPagerAdapter;
     private TabLayout tabLayout;
 
-    private String[] titles = new String[]{"홈","사회","정치","경제","국제", "문화", "IT"};
+    private String[] titles = new String[]{"홈","사회","정치","경제", "문화", "IT"};
     private DrawerLayout.DrawerListener listener;
     LinearLayout btn_bookmark;
 
@@ -72,9 +72,8 @@ public class MainActivity extends AppCompatActivity {
         Fragment frag2 = new FragSociety();
         Fragment frag3 = new FragPolitics();
         Fragment frag4 = new FragEconomic();
-        Fragment frag5 = new FragInternational();
-        Fragment frag6 = new FragCulture();
-        Fragment frag7 = new FragInfoTech();
+        Fragment frag5 = new FragCulture();
+        Fragment frag6 = new FragInfoTech();
 
         viewPager2 = findViewById(R.id.viewpage);
         tabLayout = findViewById(R.id.tab_layout);
@@ -86,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFrag(frag4);
         viewPagerAdapter.addFrag(frag5);
         viewPagerAdapter.addFrag(frag6);
-        viewPagerAdapter.addFrag(frag7);
         viewPager2.setAdapter(viewPagerAdapter);
 
         //뷰페이저 스와이프 막기

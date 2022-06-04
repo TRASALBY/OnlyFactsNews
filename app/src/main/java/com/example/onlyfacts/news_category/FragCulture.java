@@ -1,26 +1,36 @@
 package com.example.onlyfacts.news_category;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.onlyfacts.NewsDataAdapter;
 import com.example.onlyfacts.NewsDataSet;
 import com.example.onlyfacts.R;
 import com.example.onlyfacts.Roomtest.RoomClass;
+import com.example.onlyfacts.dbconnthread.DBConnect;
+import com.example.onlyfacts.dbconnthread.DBJsonToString;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FragCulture extends Fragment {
-
-    private RecyclerView recyclerView;
-    private ArrayList<NewsDataSet> list = new ArrayList<>();
-    RoomClass roomDatabase;
-
-
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    List<NewsDataSet> newsDataSetList;
+    Handler settingHandler;
+    RoomClass database;
     public static FragCulture newInstance() {
         FragCulture fragment = new FragCulture();
         return fragment;
@@ -31,8 +41,13 @@ public class FragCulture extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_culture, container, false);
 
-        roomDatabase = RoomClass.getInstance(getActivity());
+        recyclerView = view.findViewById(R.id.newslist_culture);
 
+        settingHandler = new MainHandler();
+        database = RoomClass.getInstance(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        Thread dbConnect = new DBConnect(settingHandler);
+        dbConnect.start();
         return view;
     }
 
@@ -40,4 +55,42 @@ public class FragCulture extends Fragment {
     public void onPause() {
         super.onPause();
     }
+
+    class MainHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            Bundle bundle = msg.getData();
+            String txt = bundle.getString("data");
+
+            if (txt.equals("")){
+                Log.d("connect","connection fail");
+            }else{
+                try {
+                    DBJsonToString jts = new DBJsonToString(txt);
+                    newsDataSetList = jts.getDatalist();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                List<NewsDataSet>  field_datas = new ArrayList<NewsDataSet>();
+
+                for(int i = 0; i < newsDataSetList.size(); i++){
+                    NewsDataSet set = newsDataSetList.get(i);
+                    if(set.getField().equals("4")){ //문화 4
+                        field_datas.add(set);
+                    }
+                }
+
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                NewsDataAdapter newsDataAdapter = new NewsDataAdapter(field_datas);
+                recyclerView.setAdapter(newsDataAdapter);
+
+            }
+        }
+    }
+
 }

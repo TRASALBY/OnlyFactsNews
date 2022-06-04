@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txt_field_time1"
+                android:id="@+id/field_head1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
@@ -37,7 +37,7 @@
                 android:layout_weight="1"/>
 
             <TextView
-                android:id="@+id/txt_mainNews_time1"
+                android:id="@+id/time_head1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
@@ -48,7 +48,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/img_mainNews1"
+            android:id="@+id/img_head1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -59,7 +59,7 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/txt_mainNews_title1"
+                android:id="@+id/title_head1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

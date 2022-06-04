@@ -80,7 +80,7 @@ public class FragSociety extends Fragment {
 
                 for(int i = 0; i < newsDataSetList.size(); i++){
                     NewsDataSet set = newsDataSetList.get(i);
-                    if(set.getField().equals("3")){
+                    if(set.getField().equals("3")){ // 사회 3
                         field_datas.add(set);
                     }
                 }

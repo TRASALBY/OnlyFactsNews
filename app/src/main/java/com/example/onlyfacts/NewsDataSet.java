@@ -50,7 +50,6 @@ public class NewsDataSet implements Parcelable {
     @Expose
     private String reliability;
 
-
     public NewsDataSet(Parcel in) {
         readFromParcel(in);
     }

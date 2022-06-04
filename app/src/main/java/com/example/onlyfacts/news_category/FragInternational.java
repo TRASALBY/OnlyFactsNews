@@ -1,23 +1,28 @@
 package com.example.onlyfacts.news_category;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfacts.NewsDataSet;
 import com.example.onlyfacts.R;
+import com.example.onlyfacts.Roomtest.RoomClass;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FragInternational extends Fragment {
-
-    private RecyclerView recyclerView;
-    private ArrayList<NewsDataSet> list = new ArrayList<>();
-
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    List<NewsDataSet> newsDataSetList;
+    Handler settingHandler;
+    RoomClass database;
     public static FragInternational newInstance() {
         FragInternational fragment = new FragInternational();
         return fragment;
