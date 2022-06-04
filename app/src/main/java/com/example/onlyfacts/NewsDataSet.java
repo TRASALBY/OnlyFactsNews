@@ -1,7 +1,11 @@
 package com.example.onlyfacts;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -10,7 +14,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class NewsDataSet {
+public class NewsDataSet implements Parcelable {
 
     @PrimaryKey
     @SerializedName("id")
@@ -45,6 +49,66 @@ public class NewsDataSet {
     @SerializedName("reliability")
     @Expose
     private String reliability;
+
+
+    public NewsDataSet(Parcel in) {
+        readFromParcel(in);
+    }
+    @Ignore
+    public NewsDataSet(String id) {
+        this(id, "null", "null", "null", "null", "null", "null", "null");
+    }
+
+    public NewsDataSet(String id, String title, String body, String imglink, String time, String field, String sourcelink, String reliability){
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.imglink = imglink;
+        this.time = time;
+        this.field = field;
+        this.sourcelink = sourcelink;
+        this.reliability = reliability;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<NewsDataSet> CREATOR = new Creator<NewsDataSet>() {
+        @Override
+        public NewsDataSet createFromParcel(Parcel in) {
+            return new NewsDataSet(in);
+        }
+
+        @Override
+        public NewsDataSet[] newArray(int size) {
+            return new NewsDataSet[size];
+        }
+    };
+
+    public void writeToParcel(Parcel dest, int flags){
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(body);
+        dest.writeString(imglink);
+        dest.writeString(time);
+        dest.writeString(field);
+        dest.writeString(sourcelink);
+        dest.writeString(reliability);
+    }
+
+    private void readFromParcel(Parcel in){
+        id = in.readString();
+        title = in.readString();
+        body = in.readString();
+        imglink = in.readString();
+        time = in.readString();
+        field = in.readString();
+        sourcelink = in.readString();
+        reliability = in.readString();
+    }
+
 
     public String getId() {
         return id;

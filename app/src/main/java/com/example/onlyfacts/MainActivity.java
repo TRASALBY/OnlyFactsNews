@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.onlyfacts.dbconnthread.TestActivity;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] titles = new String[]{"홈","사회","정치","경제","국제", "문화", "IT"};
     private DrawerLayout.DrawerListener listener;
-    Button btn_test;
+    LinearLayout btn_bookmark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +54,17 @@ public class MainActivity extends AppCompatActivity {
         setTabs();
         setDrawer();
 
-        btn_test = findViewById(R.id.btn_test);
-        btn_test.setOnClickListener(new View.OnClickListener() {
+        btn_bookmark = findViewById(R.id.box_bookmark);
+        btn_bookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BookmarkActivity.class);
                 startActivity(intent);
 
             }
         });
 
     }
-
 //메뉴탭 - 뷰페이저2 연결 구현 ===============
     private void setTabs() {
 
@@ -137,9 +137,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDrawerStateChanged(int newState) {        }
         };
-
     }
 //=======================================
 
+//DB 데이터 받기
+    public void dataLoad(View view) {
+
+    }
+//
 
 }

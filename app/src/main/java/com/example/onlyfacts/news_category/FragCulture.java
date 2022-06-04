@@ -6,21 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlyfacts.Data;
-import com.example.onlyfacts.DataAdapter;
+import com.example.onlyfacts.NewsDataSet;
 import com.example.onlyfacts.R;
+import com.example.onlyfacts.Roomtest.RoomClass;
 
 import java.util.ArrayList;
 
 public class FragCulture extends Fragment {
 
     private RecyclerView recyclerView;
-    private DataAdapter dataAdapter;
-    private ArrayList<Data> list = new ArrayList<>();
+    private ArrayList<NewsDataSet> list = new ArrayList<>();
+    RoomClass roomDatabase;
+
 
     public static FragCulture newInstance() {
         FragCulture fragment = new FragCulture();
@@ -32,21 +31,13 @@ public class FragCulture extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_culture, container, false);
 
-        //리사이클러뷰
-        recyclerView = (RecyclerView) view.findViewById(R.id.newslist_culture);
-        recyclerView.setHasFixedSize(true);
-        dataAdapter = new DataAdapter(list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(dataAdapter);
-
-        list.add(new Data("80",R.drawable.img_dummycookie, "까까뉴스", "1시간 전", "[문화]전국 쿠키 체육대회 앵두맛 쿠키 참전 소식! 우승 노리는가?"));
+        roomDatabase = RoomClass.getInstance(getActivity());
 
         return view;
     }
+
     @Override
     public void onPause() {
         super.onPause();
-        list.clear();
     }
 }

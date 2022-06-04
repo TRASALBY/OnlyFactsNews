@@ -59,26 +59,27 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:layout_marginTop="10dp"
-            android:text="북마크"
-            android:textSize="20sp"
-            android:fontFamily="@font/scoredream5"
-            android:textColor="#CC000000"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="bookmarks"
-            android:fontFamily="@font/scoredream5"
-            android:layout_marginLeft="14dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_bookmarks"
+        <LinearLayout
+            android:id="@+id/box_bookmark"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="10dp"
+                android:text="북마크"
+                android:textSize="20sp"
+                android:fontFamily="@font/scoredream5"
+                android:textColor="#CC000000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="bookmarks"
+                android:fontFamily="@font/scoredream5"
+                android:layout_marginLeft="14dp"/>
+        </LinearLayout>
 
         <View
             android:id="@+id/divider2"
@@ -93,6 +94,7 @@
         android:layout_height="50dp"
         android:background="#DCDCDC"
         android:orientation="horizontal">
+        <!--
         <Button
             android:text="test"
             android:id="@+id/btn_test"
@@ -109,16 +111,18 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_setting"/>
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
-                android:text="설정"
                 android:fontFamily="@font/scoredream5"
-                android:textSize="20sp"
-                android:textColor="#CC000000"/>
+                android:text="[더미]버튼"
+                android:textColor="#CC000000"
+                android:textSize="20sp" />
         </LinearLayout>
+        !-->
     </LinearLayout>
 
 </LinearLayout>

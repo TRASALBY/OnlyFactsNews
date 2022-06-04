@@ -7,22 +7,31 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.onlyfacts.Data;
-import com.example.onlyfacts.DataAdapter;
+import com.example.onlyfacts.NewsDataAdapter;
+import com.example.onlyfacts.NewsDataSet;
 import com.example.onlyfacts.R;
+import com.example.onlyfacts.Roomtest.RoomClass;
+import com.example.onlyfacts.dbconnthread.DBConnect;
+import com.example.onlyfacts.dbconnthread.DBJsonToString;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FragSociety extends Fragment {
-
-    private RecyclerView recyclerView;
-    private DataAdapter dataAdapter;
-    private ArrayList<Data> list = new ArrayList<>();
-
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    List<NewsDataSet> newsDataSetList;
+    Handler settingHandler;
+    RoomClass database;
     public static FragSociety newInstance() {
         FragSociety fragment = new FragSociety();
         return fragment;
@@ -34,19 +43,55 @@ public class FragSociety extends Fragment {
         View view =  inflater.inflate(R.layout.frag_society, container, false);
 
         recyclerView = view.findViewById(R.id.newslist_society);
-        recyclerView.setHasFixedSize(true);
-        dataAdapter = new DataAdapter(list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(dataAdapter);
 
-        list.add(new Data("80",R.drawable.img_dummycookie, "까까뉴스", "1시간 전", "[사회] 12전국 쿠키 체육대회 앵두맛 쿠키 참전 소식! 우승 노리는가?"));
+
+        settingHandler = new MainHandler();
+        database = RoomClass.getInstance(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        Thread dbConnect = new DBConnect(settingHandler);
+        dbConnect.start();
 
         return view;
     }
     @Override
     public void onPause() {
         super.onPause();
-        list.clear();
+    }
+
+    class MainHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            Bundle bundle = msg.getData();
+            String txt = bundle.getString("data");
+
+            if (txt.equals("")){
+                Log.d("connect","connection fail");
+            }else{
+                try {
+                    DBJsonToString jts = new DBJsonToString(txt);
+                    newsDataSetList = jts.getDatalist();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                List<NewsDataSet>  field_datas = new ArrayList<NewsDataSet>();
+
+                for(int i = 0; i < newsDataSetList.size(); i++){
+                    NewsDataSet set = newsDataSetList.get(i);
+                    if(set.getField().equals("3")){
+                        field_datas.add(set);
+                    }
+                }
+
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                NewsDataAdapter newsDataAdapter = new NewsDataAdapter(field_datas);
+                recyclerView.setAdapter(newsDataAdapter);
+
+            }
+        }
     }
 }

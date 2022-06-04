@@ -12,12 +12,12 @@
         android:layout_height="80dp"
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/iv_bookmark"
+        app:layout_constraintEnd_toStartOf="@+id/bookmark_rcv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iv_profile"
+            android:id="@+id/img_rcv"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/img_dummy" />
@@ -50,7 +50,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/tv_reliability"
+                        android:id="@+id/reliability_rcv"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/imcresoojin"
@@ -67,21 +67,21 @@
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
-
+<!--
                 <TextView
                     android:id="@+id/tv_press"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="언론사" />
-
+!-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" • " />
 
                 <TextView
-                    android:id="@+id/tv_time"
+                    android:id="@+id/time_rcv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1시간 전" />
@@ -89,11 +89,11 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_title"
+                android:id="@+id/title_rcv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="뉴스 제목 더미 데이터"
+                android:text="[더미] 뉴스 제목 데이터"
                 android:textSize="18sp"
                 android:maxLines="2"
                 android:ellipsize="end"/>
@@ -101,12 +101,15 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_bookmark"
+    <CheckBox
+        android:id="@+id/bookmark_rcv"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_gravity="right|center"
         android:layout_margin="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/selector_bookmarks"
+        android:button="@null"
         android:src="@drawable/ic_bookmarks"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/list_news"

@@ -22,12 +22,12 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txt_mainNews_press1"
+                android:id="@+id/txt_field_time1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_gravity="center_vertical"
-                android:text="언론사 더미 데이터 1"
+                android:text="[더미] 카테고리 데이터 1"
                 android:textSize="12sp"
                 android:textColor="#B3000000"/>
 
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:layout_gravity="center_vertical"
-                android:text="지난 시간 더미 데이터 1"
+                android:text="[더미]시간 데이터 1"
                 android:textSize="10sp"/>
 
         </LinearLayout>
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="12dp"
-                android:text="메인페이지 대표뉴스의 제목 더미 데이터 1"
+                android:text="[더미]헤드라인 뉴스제목 데이터 1"
                 android:fontFamily="@font/scoredream5"
                 android:textColor="#CC000000"
                 android:textSize="14sp"/>

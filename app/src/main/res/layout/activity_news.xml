@@ -12,7 +12,7 @@
         android:layout_height="80dp"
         android:background="@color/main"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/tv_title_news"
+        app:layout_constraintBottom_toTopOf="@+id/title_news"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,17 +30,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <ImageButton
+        <CheckBox
             android:id="@+id/btn_marks_news"
             android:layout_width="36dp"
             android:layout_height="36dp"
+            android:button="@null"
             android:layout_gravity="center"
             android:layout_margin="28dp"
-            android:background="@drawable/ic_bookmarks_small" />
+            android:background="@drawable/selector_bookmarks2" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_title_news"
+        android:id="@+id/title_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="28dp"
@@ -63,7 +64,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_news">
+        app:layout_constraintTop_toBottomOf="@+id/title_news">
 
 
         <ImageView
@@ -73,7 +74,7 @@
             android:background="@color/black"
             android:foreground="@drawable/gradation_w_b"
             android:src="@drawable/img_dummy_cookierun2" />
-
+<!--
         <ImageView
             android:id="@+id/page_down"
             android:layout_width="36dp"
@@ -89,16 +90,23 @@
             android:layout_gravity="right|center"
             android:layout_margin="14dp"
             android:src="@drawable/ic_pageup" />
-
-        <TextView
+!-->
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="130dp"
             android:layout_gravity="bottom"
-            android:layout_marginHorizontal="28dp"
-            android:fontFamily="@font/notosans_medium"
-            android:text=" [더미] 유력 우승후보로 초코볼맛 쿠키에 맞서 테니스계의 강자 오렌지맛 쿠키,
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginBottom="14dp">
+            <TextView
+                android:id="@+id/body_news"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/notosans_medium"
+                android:text=" [더미] 유력 우승후보로 초코볼맛 쿠키에 맞서 테니스계의 강자 오렌지맛 쿠키,
 펜싱천재 화이트초코 쿠키, 그리고 장애물 날리기의 권위쿠키인 닌자맛쿠키가 참가했습니다."
-            android:textColor="@color/white" />
+                android:textColor="@color/white" />
+        </ScrollView>
     </FrameLayout>
 
     <LinearLayout
@@ -106,26 +114,75 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/img_originlink"
+        app:layout_constraintBottom_toTopOf="@+id/sourcelink_news"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="[더미] 오븐뉴스 | 입력 2022. 04. 30. 22:35" />
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="["
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/field_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="더미- 스포츠"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="]  "
+                android:textSize="16sp"/>
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="입력 | "/>
+            <TextView
+                android:id="@+id/time_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="[더미] 뉴스 시간" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="[더미] 오븐뉴스 기자맛쿠키 gijacooki2@oven.run" />
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="신뢰도 | "/>
+            <TextView
+                android:id="@+id/reliability_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="[더미] 신뢰도"
+                android:textColor="#99000000"
+                android:fontFamily="@font/scoredream5"
+                android:textSize="20sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=" %"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/img_originlink"
+        android:id="@+id/sourcelink_news"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_link"

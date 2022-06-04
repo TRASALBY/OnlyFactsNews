@@ -1,5 +1,6 @@
 package com.example.onlyfacts.headnews;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import com.example.onlyfacts.NewsActivity;
 import com.example.onlyfacts.R;
 
 public class Headnews2 extends Fragment {
@@ -24,6 +27,16 @@ public class Headnews2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.headnews2,container,false);
+
+        LinearLayout headNews2 = rootView.findViewById(R.id.box_mainNews2);
+        headNews2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NewsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
     }
 }

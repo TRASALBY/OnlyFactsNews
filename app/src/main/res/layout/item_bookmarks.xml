@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_category"
+            android:id="@+id/tv_category_bookmarks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -27,7 +27,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_title_bookmarks"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -46,13 +46,15 @@
             android:layout_marginHorizontal="14dp"
             android:orientation="vertical">
 
-            <ImageView
+            <CheckBox
                 android:id="@+id/ic_selected_bookmarks"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_gravity="center"
                 android:layout_marginVertical="2dp"
-                android:src="@drawable/ic_bookmarks"/>
+                android:src="@drawable/ic_bookmarks"
+                android:button="@null"
+                android:background="@drawable/selector_bookmarks"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

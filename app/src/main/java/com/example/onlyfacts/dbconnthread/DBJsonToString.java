@@ -13,14 +13,14 @@ public class DBJsonToString {
 
     String data;
     String txt = "";
+    String nId = "", nTitle ="", nField="", nImglink="", nBody="", nTime="", nReliability="", nSourcelink="";
     List<NewsDataSet> datalist;
 
     public DBJsonToString(String data) throws JSONException {
         this.data = data;
         Gson gson = new Gson();
 
-        datalist = gson.fromJson(data,
-                new TypeToken<List<NewsDataSet>>(){}.getType());
+        datalist = gson.fromJson(data, new TypeToken<List<NewsDataSet>>(){}.getType());
 
         /*
         JSONArray array = new JSONArray(data);
@@ -39,15 +39,17 @@ public class DBJsonToString {
 
         for (int i = 0; i < datalist.size(); i++){
             NewsDataSet obj = datalist.get(i);
-            txt += obj.getId() + " ";
+            txt += obj.getId();
 
-            if(i%5 == 4){
-                txt += "\n";
-            }
+            txt += "\n";
         }
     }
 
     public String getTxt() {
         return txt;
+    }
+
+    public List<NewsDataSet> getDatalist() {
+        return datalist;
     }
 }
