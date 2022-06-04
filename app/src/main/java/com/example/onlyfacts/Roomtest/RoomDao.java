@@ -19,4 +19,7 @@ public interface RoomDao {
     @Delete
     void delete(NewsDataSet entity);
 
+    @Query("SELECT * FROM NewsDataSet WHERE ID = :id")
+    NewsDataSet getEntity(String id);
+
 }

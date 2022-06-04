@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.onlyfacts.Roomtest.RoomClass;
 import com.example.onlyfacts.dbconnthread.DBJsonToString;
 import com.example.onlyfacts.dbconnthread.RoomInsertConn;
+import com.example.onlyfacts.dbconnthread.RoomInsertDeleteConn;
 
 import org.json.JSONException;
 
@@ -76,17 +77,17 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         holder.bookmark.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                Thread thread = new RoomInsertConn(new InsertHandler(), roomDatabase, item);
-                thread.start();
+                    Thread thread = new RoomInsertDeleteConn(new InsertDeleteHandler(), roomDatabase, item);
+                    thread.start();
             }
         });
     }
 
-    class InsertHandler extends Handler{
+    class InsertDeleteHandler extends Handler{
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Log.d("Insert_Log", "insert message handled");
+            Log.d("I/D_Log", "insert/delete message handled");
         }
     }
 
