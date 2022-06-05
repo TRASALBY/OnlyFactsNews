@@ -90,8 +90,9 @@ public class NewsActivity extends AppCompatActivity {
         String reliability_news = newsDataSet.getReliability();
 
         field_change(field_news);   //뉴스 분야 정수형->문자형으로 변경
-
-        txtlist = body_news.split("#*");
+        String test_str ="qweqweqweqw#!qerqrqrqerqrq";
+        String[] test_strlist = test_str.split("#!");
+        txtlist = body_news.split("#!");
 
         tv_title.setText(title_news);
         settingTxtview();
