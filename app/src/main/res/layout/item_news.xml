@@ -33,7 +33,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/color_reliability_newsList"
+                    android:id="@+id/color_reliability"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"

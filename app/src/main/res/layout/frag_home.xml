@@ -62,11 +62,12 @@
                 android:layout_gravity="center"
                 android:layout_marginVertical="20dp"
                 android:background="#4D000000" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newslist_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp" />
+                android:layout_marginLeft="10dp" />
         </LinearLayout>
     </ScrollView>
 

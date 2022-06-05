@@ -2,6 +2,7 @@ package com.example.onlyfacts;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,11 +15,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -68,16 +71,29 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         String imageURL = list.get(position).getImglink();
-        if (imageURL != null) { //이미지 있을때 해당 이미지 적용
-            Glide.with(holder.itemView.getContext()).load(imageURL).into(holder.img);
+        if (imageURL.equals("")) { //이미지 있을때 해당 이미지 적용
+            holder.img.setImageResource(R.drawable.img_dummy);
+
         }
         else {  //이미지 없을때 더미이미지 적용
-            holder.img.setImageResource(R.drawable.img_dummy);
+            Glide.with(holder.itemView.getContext()).load(imageURL).into(holder.img);
         }
         NewsDataSet item = list.get(position);
         holder.title.setText(item.getTitle());
         holder.time.setText(item.getTime());
         holder.reliability.setText(item.getReliability());
+        int reliability = Integer.parseInt(list.get(position).getReliability());
+        if(reliability >= 80) { //초록
+            holder.color.setBackgroundColor(Color.argb(255, 76, 175, 80));
+        } else if (reliability >= 50 & reliability < 80) {  //노랑
+            holder.color.setBackgroundColor(Color.argb(255, 255, 240, 000));
+        } else if (reliability >= 40 & reliability < 80) {  // 주황
+            holder.color.setBackgroundColor(Color.argb(255, 251, 119, 61));
+        }else if (reliability >= 0 & reliability < 40) {   // 빨강
+            holder.color.setBackgroundColor(Color.argb(255, 255, 0, 0));
+        } else {
+            holder.color.setBackgroundColor(Color.argb(255, 251, 119, 61));
+        }
 
         /////////////////////////////////////////
         Boolean bookmarked = false;
@@ -105,7 +121,12 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         holder.bookmark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                
+                if (isChecked) {
+                    holder.bookmark.setChecked(true);
+                }
+                else {
+                    holder.bookmark.setChecked(false);
+                }
             }
         });
 
@@ -124,6 +145,8 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
                 public void onClick(View v) {
                     Thread thread = new RoomInsertDeleteConn(new InsertDeleteHandler(), roomDatabase, item);
                     thread.start();
+                    updateRecyclerview();
+
             }
         });
     }
@@ -147,6 +170,10 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         }
     }
 
+    public void updateRecyclerview() {
+        this.notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return list.size();
@@ -161,6 +188,7 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         TextView sourcelink;
         TextView reliability;
         CheckBox bookmark;
+        LinearLayout color;
 
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -169,6 +197,7 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
             this.time = itemView.findViewById(R.id.time_rcv);
             this.reliability = itemView.findViewById(R.id.reliability_rcv);
             this.bookmark = itemView.findViewById(R.id.bookmark_rcv);
+            this.color = itemView.findViewById(R.id.color_reliability);
 
         }
     }

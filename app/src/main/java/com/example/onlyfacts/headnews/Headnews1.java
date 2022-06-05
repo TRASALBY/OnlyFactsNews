@@ -43,7 +43,6 @@ public class Headnews1 extends Fragment {
     TextView title, field, time;
     ImageView img;
     Activity activity;
-    String realField = "";
     public Headnews1() { }
     public static Headnews1 newInstance() {
         Headnews1 fragment = new Headnews1();

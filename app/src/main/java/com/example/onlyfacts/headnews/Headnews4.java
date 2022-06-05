@@ -102,7 +102,12 @@ public class Headnews4 extends Fragment {
                 title.setText(set.getTitle());
                 time.setText(set.getTime());
                 if (set.getImglink() != null) { //이미지 있을때 해당 이미지 적용
-                    Glide.with(activity).load(set.getImglink()).into(img);
+                    if (set.getImglink().equals("")){
+                        img.setImageResource(R.drawable.img_dummy);
+                    }
+                    else{
+                        Glide.with(activity).load(set.getImglink()).into(img);
+                    }
                 }
                 else {  //이미지 없을때 더미이미지 적용
                     img.setImageResource(R.drawable.img_dummy);

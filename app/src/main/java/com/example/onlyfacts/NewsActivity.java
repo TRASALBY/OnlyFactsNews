@@ -1,6 +1,9 @@
 package com.example.onlyfacts;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +25,7 @@ import com.example.onlyfacts.dbconnthread.TestActivity;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsActivity extends AppCompatActivity {
@@ -32,14 +36,21 @@ public class NewsActivity extends AppCompatActivity {
     TextView tv_time;
     TextView tv_sourcelink;
     TextView tv_reliability;
+    TextView current_pg;
     NewsDataSet newsDataSet;
+    ImageView pg_down, pg_up;
 
     String sourcelink_news;
     String realField = "";
+    String[] txtlist;
+    int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
+        FragmentManager  fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         Bundle recieve = getIntent().getExtras();
         newsDataSet = recieve.getParcelable("selected");
@@ -50,6 +61,25 @@ public class NewsActivity extends AppCompatActivity {
         tv_field = findViewById(R.id.field_news);
         tv_time = findViewById(R.id.time_news);
         tv_reliability = findViewById(R.id.reliability_news);
+        pg_down = findViewById(R.id.page_down);
+        pg_up = findViewById(R.id.page_up);
+        current_pg = findViewById(R.id.current_pg_num);
+
+        /*
+        String bodytext = newsDataSet.getBody();
+        String[] txtlist = bodytext.split("#*"); //배열길이가 3~5줄인 String 배열
+
+
+        List<Fragment> fraglist = new ArrayList<Fragment>();
+        for (int i = 0; i < txtlist.length; i++){
+            Fragment frag = new FragmentNews(txtlist[i]);
+            fraglist.add(frag);
+        }           // 프래그래그먼트 리스트 완성
+
+        //뷰페이저어뎁터(fraglist)
+*/
+
+
 
         String title_news = newsDataSet.getTitle();
         String body_news = newsDataSet.getBody();
@@ -61,8 +91,10 @@ public class NewsActivity extends AppCompatActivity {
 
         field_change(field_news);   //뉴스 분야 정수형->문자형으로 변경
 
+        txtlist = body_news.split("#*");
+
         tv_title.setText(title_news);
-        tv_body.setText(body_news);
+        settingTxtview();
         tv_field.setText(realField);
         tv_time.setText(time_news);
         if (imglink_news != null) {
@@ -82,9 +114,23 @@ public class NewsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        pg_up.setOnClickListener(v -> {
+            Log.d("btn_clicked", "clicked_up");
+            if (count < txtlist.length-1){
+                count++;
+                settingTxtview();
+            }
+        });
+
+        pg_down.setOnClickListener(v -> {
+            Log.d("btn_clicked", "clicked_down");
+            if(count > 0){
+                count--;
+                settingTxtview();
+            }
+        });
 
         btn_close();
-
 
     }
 
@@ -128,14 +174,12 @@ public class NewsActivity extends AppCompatActivity {
     //북마크 버튼 메소드
     private void btn_marks() {}
 
-    //뉴스 페이지 다운 메소드
-    private void pg_down() {}
 
-    //뉴스 페이지 업 메소드
-    private void pg_up() {}
-
-    //뉴스 원문링크 메소드
-
-
+    private void settingTxtview(){
+        tv_body.setText(txtlist[count]);
+        String zzz = Integer.toString(count + 1) + " / " + Integer.toString(txtlist.length);
+        current_pg.setText(zzz);
+        Log.d("settingTxtView", "?-_^^...;;");
+    }
 
 }
