@@ -6,31 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.example.onlyfacts.dbconnthread.TestActivity;
+import com.example.onlyfacts.adapter.ViewPagerAdapter;
 import com.example.onlyfacts.news_category.FragCulture;
 import com.example.onlyfacts.news_category.FragEconomic;
 import com.example.onlyfacts.news_category.FragHome;
 import com.example.onlyfacts.news_category.FragInfoTech;
-import com.example.onlyfacts.news_category.FragInternational;
 import com.example.onlyfacts.news_category.FragPolitics;
 import com.example.onlyfacts.news_category.FragSociety;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

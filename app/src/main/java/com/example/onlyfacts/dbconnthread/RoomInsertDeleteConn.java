@@ -20,23 +20,18 @@ public class RoomInsertDeleteConn extends Thread{
     }
 
     public void run(){
-        Log.d("Ruuner","Thread Running");
         try {
             NewsDataSet set = database.roomDao().getEntity(dataset.getId());
 
             if (set != null){
                 database.roomDao().delete(dataset);
-                Log.d("Delete_Log", "delete executed");
             }else{
                 database.roomDao().insert(dataset);
-                Log.d("Insert_Log", "insert executed");
             }
         }catch (Exception ex){
             Log.d("Exception_Logger", ex.getMessage());
         }
         Message message = connHandler.obtainMessage();
-
-        Log.d("I/D_Log", "insert/delete completed");
         connHandler.sendMessage(message);
     }
 }

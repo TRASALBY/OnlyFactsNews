@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlyfacts.NewsDataAdapter;
+import com.example.onlyfacts.adapter.NewsDataAdapter;
 import com.example.onlyfacts.NewsDataSet;
 import com.example.onlyfacts.R;
 import com.example.onlyfacts.Roomtest.RoomClass;

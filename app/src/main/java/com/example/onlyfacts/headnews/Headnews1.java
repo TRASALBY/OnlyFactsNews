@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.Message;
@@ -21,13 +18,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.onlyfacts.NewsActivity;
-import com.example.onlyfacts.NewsDataAdapter;
 import com.example.onlyfacts.NewsDataSet;
 import com.example.onlyfacts.R;
 import com.example.onlyfacts.Roomtest.RoomClass;
 import com.example.onlyfacts.dbconnthread.DBConnect;
 import com.example.onlyfacts.dbconnthread.DBJsonToString;
-import com.example.onlyfacts.dbconnthread.TestActivity;
 
 import org.json.JSONException;
 

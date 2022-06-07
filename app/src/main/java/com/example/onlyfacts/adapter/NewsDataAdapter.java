@@ -1,4 +1,4 @@
-package com.example.onlyfacts;
+package com.example.onlyfacts.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,28 +10,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.onlyfacts.NewsActivity;
+import com.example.onlyfacts.NewsDataSet;
+import com.example.onlyfacts.R;
 import com.example.onlyfacts.Roomtest.RoomClass;
-import com.example.onlyfacts.dbconnthread.DBJsonToString;
-import com.example.onlyfacts.dbconnthread.RoomInsertConn;
 import com.example.onlyfacts.dbconnthread.RoomInsertDeleteConn;
 import com.example.onlyfacts.dbconnthread.RoomSelectConn;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +67,6 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         String imageURL = list.get(position).getImglink();
         if (imageURL.equals("")) { //이미지 있을때 해당 이미지 적용
             holder.img.setImageResource(R.drawable.img_dummy);
-
         }
         else {  //이미지 없을때 더미이미지 적용
             Glide.with(holder.itemView.getContext()).load(imageURL).into(holder.img);
@@ -94,8 +87,6 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
         } else {
             holder.color.setBackgroundColor(Color.argb(255, 251, 119, 61));
         }
-
-        /////////////////////////////////////////
         Boolean bookmarked = false;
         if (bookmarklist != null) {
             String itemID = item.getId();
@@ -107,15 +98,6 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
                 }
             }
         }
-/////////////////////////////////////////////////
-//        if(bookmarked){
-//            //불 들어옴
-//            holder.bookmark.setButtonDrawable(R.drawable.ic_selected_bookmarks);
-//        }else{
-//            //불 안 들어옴
-//            holder.bookmark.setButtonDrawable(R.drawable.ic_bookmarks);
-//        }
-
         holder.bookmark.setOnCheckedChangeListener(null);
         holder.bookmark.setChecked(bookmarked);
         holder.bookmark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -145,8 +127,7 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.NewsVi
                 public void onClick(View v) {
                     Thread thread = new RoomInsertDeleteConn(new InsertDeleteHandler(), roomDatabase, item);
                     thread.start();
-                    updateRecyclerview();
-
+                    notifyDataSetChanged();
             }
         });
     }

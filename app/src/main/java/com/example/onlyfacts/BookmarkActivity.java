@@ -11,6 +11,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.onlyfacts.Roomtest.RoomClass;
+import com.example.onlyfacts.adapter.NewsDataAdapter;
 import com.example.onlyfacts.dbconnthread.RoomSelectConn;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.onlyfacts;
+package com.example.onlyfacts.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

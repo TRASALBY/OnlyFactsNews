@@ -28,19 +28,15 @@ public class RoomSelectConn extends Thread{
     }
 
     public void run(){
-
         try {
             dataSetList = database.roomDao().getAll();
         } catch (Exception ex){
             Log.d("a", ex.getMessage());
         }
-        Log.d("Select_Log", "select executed");
         Message message = connHandler.obtainMessage();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) dataSetList);
         message.setData(bundle);
-
-        Log.d("Select_Log", "select completed");
         connHandler.sendMessage(message);
     }
 }

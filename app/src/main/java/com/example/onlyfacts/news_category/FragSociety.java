@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.onlyfacts.NewsDataAdapter;
+import com.example.onlyfacts.adapter.NewsDataAdapter;
 import com.example.onlyfacts.NewsDataSet;
 import com.example.onlyfacts.R;
 import com.example.onlyfacts.Roomtest.RoomClass;

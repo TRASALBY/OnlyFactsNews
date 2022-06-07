@@ -5,16 +5,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.onlyfacts.NewsDataAdapter;
+import com.example.onlyfacts.adapter.NewsDataAdapter;
 import com.example.onlyfacts.NewsDataSet;
 import com.example.onlyfacts.R;
 import com.example.onlyfacts.Roomtest.*;

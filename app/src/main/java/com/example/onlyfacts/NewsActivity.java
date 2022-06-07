@@ -49,9 +49,6 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
-        FragmentManager  fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
         Bundle recieve = getIntent().getExtras();
         newsDataSet = recieve.getParcelable("selected");
 
@@ -64,22 +61,6 @@ public class NewsActivity extends AppCompatActivity {
         pg_down = findViewById(R.id.page_down);
         pg_up = findViewById(R.id.page_up);
         current_pg = findViewById(R.id.current_pg_num);
-
-        /*
-        String bodytext = newsDataSet.getBody();
-        String[] txtlist = bodytext.split("#*"); //배열길이가 3~5줄인 String 배열
-
-
-        List<Fragment> fraglist = new ArrayList<Fragment>();
-        for (int i = 0; i < txtlist.length; i++){
-            Fragment frag = new FragmentNews(txtlist[i]);
-            fraglist.add(frag);
-        }           // 프래그래그먼트 리스트 완성
-
-        //뷰페이저어뎁터(fraglist)
-*/
-
-
 
         String title_news = newsDataSet.getTitle();
         String body_news = newsDataSet.getBody();

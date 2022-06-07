@@ -1,6 +1,5 @@
 package com.example.onlyfacts.news_category;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,14 +18,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.onlyfacts.NewsDataAdapter;
+import com.example.onlyfacts.adapter.NewsDataAdapter;
 import com.example.onlyfacts.NewsDataSet;
 import com.example.onlyfacts.R;
 import com.example.onlyfacts.Roomtest.RoomClass;
 import com.example.onlyfacts.dbconnthread.DBConnect;
 import com.example.onlyfacts.dbconnthread.DBJsonToString;
-import com.example.onlyfacts.dbconnthread.TestActivity;
-import com.example.onlyfacts.headnews.HeadnewsAdapter;
+import com.example.onlyfacts.adapter.HeadnewsAdapter;
 
 import org.json.JSONException;
 
